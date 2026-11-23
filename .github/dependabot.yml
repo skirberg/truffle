@@ -1,0 +1,26 @@
+# Dependency updates, kept small: one grouped pull request a month, minor and patch only.
+# A major version is a decision, so it is left to a person. Security updates arrive on their own once
+# Dependabot alerts and security updates are on in Settings > Code security.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 2
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  # Actions are pinned to full commits and run only in this repository, so every update, a major included,
+  # comes as one grouped pull request a month that the checks run on (they came one pull request each).
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 2
+    groups:
+      actions:
+        patterns: ["*"]

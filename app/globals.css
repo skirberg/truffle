@@ -1,0 +1,153 @@
+@import 'tailwindcss';
+@import '../brand/tokens.css';
+
+/* Tailwind reads the brand tokens (brand/tokens.css, drawn from brand/tokens.json); nothing here invents a
+   color, a size or a duration, and `npm run grid` fails on one set by hand in a component. Colors that a mode
+   can change (prefers-contrast: more) go through their roles. */
+@theme inline {
+  --color-paper: var(--role-surface-ground);
+  --color-card: var(--role-surface-raised);
+  --color-truffle: var(--truffle);
+  --color-truffle-side: var(--truffle-side);
+  --color-soft: var(--role-text-secondary);
+  --color-faint: var(--role-text-source);
+  --color-line: var(--role-border-hairline);
+  --color-homes: var(--homes);
+  --color-biz: var(--biz);
+  --color-civic: var(--civic);
+  --color-vacant: var(--vacant);
+  --color-other: var(--other);
+  --font-sans: var(--font-gabarito), var(--font);
+  --radius-pill: var(--radius-pill);
+  --shadow-panel: var(--shadow-panel);
+  --shadow-pill: var(--shadow-pill);
+  --shadow-popup: var(--shadow-popup);
+  --shadow-edge: var(--shadow-edge);
+  --shadow-edge-faint: var(--shadow-edge-faint);
+  --shadow-outline: var(--shadow-outline);
+  --ease-out: var(--easing-out);
+  --text-display: var(--fs-display);
+  --text-number: var(--fs-number);
+  --text-number-phone: var(--fs-number-phone);
+  --text-title: var(--fs-title);
+  --text-title-phone: var(--fs-title-phone);
+  --text-body: var(--fs-body);
+  --text-source: var(--fs-source);
+  --tracking-display: var(--ls-display);
+  --tracking-number: var(--ls-number);
+  --tracking-title: var(--ls-title);
+  /* The grid's type scale: each size carries a line height on the 4 px baseline. */
+  --text-ui-number: var(--ts-number);
+  --text-ui-number--line-height: var(--lh-number);
+  --text-ui-title: var(--ts-title);
+  --text-ui-title--line-height: var(--lh-title);
+  --text-ui-title-phone: var(--ts-title-phone);
+  --text-ui-title-phone--line-height: var(--lh-title-phone);
+  --text-ui-headline: var(--ts-headline);
+  --text-ui-headline--line-height: var(--lh-headline);
+  --text-ui-body: var(--ts-body);
+  --text-ui-body--line-height: var(--lh-body-px);
+  --text-ui-small: var(--ts-small);
+  --text-ui-small--line-height: var(--lh-small);
+  --text-ui-label: var(--ts-label);
+  --text-ui-label--line-height: var(--lh-label);
+  --text-ui-credit: var(--ts-credit);
+  --text-ui-credit--line-height: var(--lh-credit);
+  --text-ui-tag: var(--ts-tag);
+  --text-ui-tag--line-height: var(--lh-tag);
+  /* The brand page's fluid steps, 320 to 1440 px. */
+  --text-fluid-display: var(--fluid-display);
+  --text-fluid-heading: var(--fluid-heading);
+  --text-fluid-number: var(--fluid-number);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+}
+
+:root {
+  /* One theme, light, as the brand book draws it: a device in dark mode keeps light form controls and scrollbars. */
+  color-scheme: light;
+}
+html,
+body {
+  height: 100%;
+  /* An app over a map: no pull-to-refresh, no page rubber band behind the sheet. */
+  overscroll-behavior: none;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+/* Controls answer the finger at once and never select their label on a long press. */
+button,
+a,
+[role='button'],
+[role='tab'],
+[role='option'] {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+body {
+  margin: 0;
+  background: var(--role-surface-ground);
+  color: var(--role-text-primary);
+  font-family: var(--font-gabarito), var(--font);
+  font-feature-settings: 'tnum';
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Headings break into even lines; running text never leaves one word alone on its last line. In the base
+   layer, so a component's own text-balance still wins. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p,
+  li,
+  dd,
+  summary,
+  figcaption {
+    text-wrap: pretty;
+  }
+}
+:focus-visible {
+  outline: 2px solid var(--role-border-focus);
+  outline-offset: 2px;
+}
+/* The OpenStreetMap credit is drawn by us, always visible, on a card pill. */
+.maplibregl-ctrl-attrib {
+  display: none;
+}
+.maplibregl-canvas:focus-visible {
+  outline: 3px solid var(--role-border-focus);
+  outline-offset: -3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}
+/* Windows high contrast and other forced colors: the system paints every surface, so what color alone said
+   (the view you're on, a field, a pill's edge) gets a system color or an outline. */
+@media (forced-colors: active) {
+  [role='tab'][data-active] {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+  }
+  /* No specificity, so a focus ring still wins. */
+  :where(button, input, [role='tab'], .rounded-pill) {
+    outline: 1px solid ButtonBorder;
+  }
+  /* The marks in a picture are data (the skyline's bars, the land bar, the walk track, the record's tiles, a
+     zoning family's color): they keep their colors, as a chart does, and their words beside them follow the system. */
+  [data-marks] {
+    forced-color-adjust: none;
+  }
+}

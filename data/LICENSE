@@ -1,0 +1,38 @@
+Data in this folder
+
+This folder is a sample of the data truffle.city runs on, enough to run the site locally. It is not licensed
+under the FSL-1.1-MIT that covers the code. Each part keeps the terms of its source.
+
+OpenStreetMap
+
+tiles/basemap.pmtiles (roads, water, town names and named places), places.json (town and neighborhood
+names), and the place names and kinds on lots in snapshot.json.gz and tiles/lots.pmtiles are derived from
+OpenStreetMap data.
+
+  © OpenStreetMap contributors. https://www.openstreetmap.org/copyright
+
+That data is available under the Open Data Commons Open Database License (ODbL) 1.0:
+https://opendatacommons.org/licenses/odbl/1-0/
+If you publicly use a database derived from it, you must also offer that database under the ODbL, and you
+must keep the attribution above wherever the data or a map made from it is shown.
+
+Public records
+
+The lots in snapshot.json.gz, tiles/lots.pmtiles and daily.json (parcel numbers, outlines, addresses, land
+and building values, land use, year added, neighborhood) and their zoning come from public records:
+
+- Palm Beach County property records (Palm Beach County Property Appraiser parcel data)
+- City of Boca Raton zoning districts
+- Palm Beach County zoning (unincorporated land)
+- Outside Palm Beach County the live site reads the Florida Department of Revenue statewide cadastral
+  data; none of it is in this sample.
+
+The values are the county's assessed values as published, not appraisals, and say nothing about what a lot
+would sell for. Check each source's own terms before you reuse its records.
+
+What the sample holds
+
+Only lots that are not homes: businesses, civic and public land, and other non-residential land in
+Downtown Boca Raton and West Boca (497 records). Houses, condominiums, townhouses, manufactured homes and
+land the county lists as empty residential land are left out of the records and the tiles, so this
+repository carries no list of home addresses or home values.

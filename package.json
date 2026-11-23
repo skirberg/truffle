@@ -1,0 +1,60 @@
+{
+  "name": "truffle",
+  "version": "1.0.0",
+  "private": true,
+  "author": "skirberg",
+  "license": "FSL-1.1-MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "predev": "node scripts/vendor.mjs && node scripts/tokens.mjs && node scripts/brand.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/vendor.mjs && node scripts/tokens.mjs && node scripts/brand.mjs",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "contrast": "node scripts/contrast.mjs",
+    "qa": "playwright test --project=qa",
+    "smoke": "playwright test --project=smoke",
+    "shots": "playwright test --project=shots",
+    "check": "npm run typecheck && npm run grid && npm run lint && npm test && npm run build && npm run contrast && npm run qa && npm run smoke",
+    "grid": "node scripts/grid.mjs",
+    "icons": "node scripts/brand.mjs",
+    "tokens": "node scripts/tokens.mjs",
+    "brand": "node scripts/brand.mjs",
+    "brand:live": "node scripts/brand-live.mjs",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "@mapbox/vector-tile": "^3.0.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.1.0",
+    "maplibre-gl": "^6.19.0",
+    "next": "^16.4.6",
+    "pbf": "^5.2.0",
+    "pmtiles": "^4.5.0",
+    "postgres": "^4.1.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.1",
+    "@tailwindcss/postcss": "^4.3.5",
+    "@types/node": "^24.19.2",
+    "@types/pngjs": "^6.0.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.6",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.1"
+  }
+}

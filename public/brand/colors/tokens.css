@@ -1,0 +1,80 @@
+/* Truffle design tokens. Drawn from brand/tokens.json by scripts/tokens.mjs: edit the JSON, run `npm run tokens`.
+   tests/tokens.test.ts fails when this file is not what the script writes. */
+:root {
+  /* Primitives: the brand book's colors. They never change with a mode. */
+  --paper: #F2EDE3;
+  --card: #FBF8F2;
+  --truffle: #2A1E17;
+  --truffle-side: #4A3A2F;
+  --soft: #6E6658;
+  --faint: #736B5D;
+  --line: #DDD5C6;
+  --water: #C1CFDF;
+  /* Use colors, after the Sanborn fire insurance maps: top, left side, right side */
+  --homes: #F4C542; --homes-l: #D9A82A; --homes-r: #BF911C;
+  --biz: #EE8577; --biz-l: #D3685A; --biz-r: #B95547;
+  --civic: #86ABDB; --civic-l: #6A90C2; --civic-r: #577BAA;
+  --vacant: #E4DED1; --vacant-l: #CCC4B3; --vacant-r: #B8AF9C;
+  --other: #D6CFC0; --other-l: #BEB6A5; --other-r: #A9A090;
+  /* Zoning (Rules): what a lot is allowed to be */
+  --z-single: #F4C542; --z-duplex: #E9B53A; --z-apartments: #D9A02A; --z-downtown: #EE8577; --z-shops: #D96A5B; --z-public: #86ABDB; --z-special: #D6CFC0; --z-none: #E4DED1;
+  /* Roles: what each color does. Components and the modes below use these. */
+  --role-surface-ground: var(--paper);
+  --role-surface-raised: var(--card);
+  --role-surface-inverse: var(--truffle);
+  --role-text-primary: var(--truffle);
+  --role-text-secondary: var(--soft);
+  --role-text-source: var(--faint);
+  --role-text-on-inverse: var(--paper);
+  --role-border-hairline: var(--line);
+  --role-border-focus: var(--truffle);
+  --role-accent-picked: var(--truffle);
+  --role-accent-picked-side: var(--truffle-side);
+  --role-state-called-right: var(--truffle);
+  --role-state-missed: var(--role-text-secondary);
+  /* Shadows: truffle ink at a low alpha */
+  --shadow-panel: 0 8px 40px color-mix(in srgb, var(--truffle) 12%, transparent);
+  --shadow-pill: 0 3px 16px color-mix(in srgb, var(--truffle) 10%, transparent);
+  --shadow-popup: 0 8px 30px color-mix(in srgb, var(--truffle) 15%, transparent);
+  --shadow-edge: inset 0 0 0 1px color-mix(in srgb, var(--truffle) 14%, transparent);
+  --shadow-edge-faint: inset 0 0 0 1px color-mix(in srgb, var(--truffle) 8%, transparent);
+  --shadow-outline: 0 0 0 1px color-mix(in srgb, var(--truffle) 12%, transparent);
+  /* Type: one family, Gabarito, with tabular figures */
+  --font: 'Gabarito', Arial, sans-serif;
+  --fs-display: 72px; --fw-display: 800; --ls-display: -0.035em;
+  --fs-number: 60px; --fs-number-phone: 46px; --fw-number: 800; --ls-number: -0.04em;
+  --fs-title: 38px; --fs-title-phone: 28px; --fw-title: 800; --ls-title: -0.035em;
+  --fs-body: 17px; --fw-body: 500; --lh-body: 1.4;
+  --fs-source: 13px; --fw-source: 500;
+  /* The type scale on the 4 px grid: each size with a line height that keeps baselines on it */
+  --ts-number: 56px; --lh-number: 56px;
+  --ts-title: 28px; --lh-title: 32px; --ts-title-phone: 24px; --lh-title-phone: 28px;
+  --ts-headline: 20px; --lh-headline: 24px;
+  --ts-body: 17px; --lh-body-px: 24px;
+  --ts-small: 15px; --lh-small: 20px;
+  --ts-label: 13px; --lh-label: 16px;
+  --ts-credit: 12px; --lh-credit: 16px;
+  --ts-tag: 11px; --lh-tag: 12px;
+  /* Fluid steps for the brand page, 320 to 1440 px */
+  --fluid-display: clamp(2.125rem, 1.4464rem + 3.3929vw, 4.5rem);
+  --fluid-heading: clamp(1.75rem, 1.4643rem + 1.4286vw, 2.75rem);
+  --fluid-number: clamp(2.5rem, 2.1429rem + 1.7857vw, 3.75rem);
+  /* The grid: a 4 px unit; spacing, sizes and radii on it */
+  --grid: 4px;
+  --margin-phone: 16px; --margin-desktop: 24px;
+  --panel-width: 384px; --panel-pad: 24px; --gutter: 12px; --sheet-pad: 16px; --sheet-peek: 144px;
+  --tap: 48px; --button: 56px;
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 24px; --radius-pill: 999px;
+  /* Motion. prefers-reduced-motion turns all of it off (app/globals.css) */
+  --motion-tap: 100ms; --motion-settle: 200ms; --motion-fade: 300ms; --motion-sheet: 450ms; --motion-label: 500ms; --motion-fly: 1500ms;
+  --motion-camera: 1600ms;
+  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+}
+/* contrastMore: For anyone who asks their device for more contrast (prefers-contrast: more): secondary and source text move to the darker brand ink (9.3:1 on paper), hairlines to the secondary ink. Nothing else changes; color still means use. */
+@media (prefers-contrast: more) {
+  :root {
+    --role-text-secondary: var(--truffle-side);
+    --role-text-source: var(--truffle-side);
+    --role-border-hairline: var(--soft);
+  }
+}
