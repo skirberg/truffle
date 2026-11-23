@@ -1,0 +1,18 @@
+name: Something is wrong
+description: A value, name or place that looks wrong on the map.
+labels: [data]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Which lot or page?
+      description: The address or link from the lot panel.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What does it show, and what should it show?
+      description: A source helps, for example the county property appraiser's page.
+    validations:
+      required: true

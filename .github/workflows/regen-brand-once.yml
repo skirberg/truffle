@@ -1,0 +1,24 @@
+name: Regenerate brand files once
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/regen-brand-once.yml]
+permissions:
+  contents: write
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run brand
+      - name: Commit the regenerated files and remove this one-off workflow
+        run: |
+          git rm -q .github/workflows/regen-brand-once.yml
+          git add -A
+          git -c user.name=sk -c user.email=163672792+skirberg@users.noreply.github.com commit -m "Regenerate brand files on Linux"
+          git push origin HEAD:main
