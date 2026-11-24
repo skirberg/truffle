@@ -1,12 +1,16 @@
 # Dependency updates, kept small: one grouped pull request a month, minor and patch only.
 # A major version is a decision, so it is left to a person. Security updates arrive on their own once
 # Dependabot alerts and security updates are on in Settings > Code security.
+# Cooldown: a version update is only offered once the release is 7 days old (GitHub's default is 3 days), so a bad or
+# hijacked release has time to be pulled first. It applies to version updates only, never to security updates.
 version: 2
 updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 2
     groups:
       minor-and-patch:
@@ -20,6 +24,8 @@ updates:
     directory: "/"
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 2
     groups:
       actions:
